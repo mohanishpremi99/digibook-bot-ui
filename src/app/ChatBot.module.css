@@ -1,0 +1,118 @@
+.chatbotContainer {
+  width: 470px;
+  height: 520px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.header {
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 18px 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.messages {
+  flex: 1;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.7);
+}
+
+.userMsg {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 18px 18px 4px 18px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  animation: popIn 0.3s;
+}
+
+.botMsg {
+  align-self: flex-start;
+  background: linear-gradient(90deg, #fbbf24 0%, #f472b6 100%);
+  color: #222;
+  padding: 10px 16px;
+  border-radius: 18px 18px 18px 4px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  animation: popIn 0.3s;
+}
+
+.inputArea {
+  display: flex;
+  padding: 14px;
+  background: #f3f4f6;
+  border-top: 1px solid #e5e7eb;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: none;
+  font-size: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(60, 60, 120, 0.05);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.input:focus {
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.12);
+}
+
+.sendBtn {
+  margin-left: 10px;
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.10);
+  transition: background 0.2s;
+}
+.sendBtn:hover {
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .chatbotContainer {
+    width: 98vw;
+    height: 70vh;
+    margin: 12px auto;
+    border-radius: 16px;
+  }
+  .header {
+    font-size: 1.1rem;
+    padding: 12px 0;
+  }
+  .inputArea {
+    padding: 8px;
+  }
+  .messages {
+    padding: 10px 6px;
+    gap: 8px;
+  }
+}

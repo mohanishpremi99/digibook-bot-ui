@@ -7,6 +7,7 @@ interface Message {
   sender: 'user' | 'bot' | 'system';
   sql?: string;
   suggested_questions?: string[];
+  query_result?: string;
 }
 
 const trendyBotReplies = [
@@ -66,7 +67,8 @@ export default function ChatBot() {
                   text: data.data.answer ?? data.content ?? JSON.stringify(data),
                   sender: 'bot',
                   sql: data.data.sql_query,
-                  suggested_questions: data.data.suggested_questions
+                  suggested_questions: data.data.suggested_questions,
+                  query_result: data.data.query_result
                 }]);
               }
               // Optionally handle other types if needed
@@ -103,7 +105,7 @@ export default function ChatBot() {
             className={
               msg.sender === 'user' ? styles.userMsg : msg.sender === 'system' ? styles.systemMsg : styles.botMsg
             }
-            style={{ position: 'relative', marginBottom: msg.sender === 'bot' && (msg.sql || msg.suggested_questions) ? 24 : undefined }}
+            style={{ position: 'relative', marginBottom: msg.sender === 'bot' && (msg.sql || msg.suggested_questions || msg.query_result) ? 24 : undefined }}
           >
             {/* Render message text with markdown bold support */}
             {msg.text.split(/(\*\*[^*]+\*\*)/g).map((part, i) => {
@@ -112,6 +114,20 @@ export default function ChatBot() {
               }
               return <span key={i}>{part}</span>;
             })}
+            {/* Append query_result below the final answer if present */}
+            {msg.sender === 'bot' && msg.query_result && (
+              <pre style={{
+                background: 'rgba(0,0,0,0.04)',
+                color: '#222',
+                borderRadius: 8,
+                padding: '12px 16px',
+                marginTop: 12,
+                fontSize: 15,
+                fontFamily: 'Menlo, Monaco, Consolas, monospace',
+                overflowX: 'auto',
+                boxShadow: '0 1px 4px rgba(60,60,120,0.07)'
+              }}>{msg.query_result}</pre>
+            )}
             {msg.sender === 'bot' && (msg.sql || msg.suggested_questions) && (
               <div style={{ marginTop: 16, display: 'flex', gap: 16 }}>
                 {msg.sql && (

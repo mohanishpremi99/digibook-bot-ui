@@ -1,5 +1,3 @@
-
-import Image from "next/image";
 import ChatBot from "./ChatBot";
 
 export default function Home() {

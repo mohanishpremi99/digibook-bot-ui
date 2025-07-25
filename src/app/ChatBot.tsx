@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from 'react';
 import styles from './ChatBot.module.css';
+import Logo from './asset/c5i-primary-logo.png';
 
 interface Message {
   text: string;
@@ -20,7 +21,7 @@ export default function ChatBot() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, notification]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -108,7 +109,14 @@ export default function ChatBot() {
 
   return (
     <div className={styles.chatbotContainer}>
-      <div className={styles.header}>DigiBook Bot 🤖</div>
+      <div className={styles.header}>
+        <img 
+          src={Logo.src} 
+          alt="DigiBook Logo" 
+          className={styles.headerLogo}
+        />
+        <div className={styles.headerTitle}>DigiBook Bot 🤖</div>
+      </div>
       <div className={styles.messages}>
         {/* Render messages and notification box in place of system message */}
         {messages.map((msg, idx) => {

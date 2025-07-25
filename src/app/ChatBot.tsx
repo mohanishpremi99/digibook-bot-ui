@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './ChatBot.module.css';
 import Logo from './asset/c5i-primary-logo.png';
 
@@ -123,9 +123,8 @@ export default function ChatBot() {
           // If notification is active, show notification box at the place of the latest system message
           if (notification && idx === messages.length - 1 && msg.sender === 'user') {
             return (
-              <>
+              <React.Fragment key={`user-msg-notification-${idx}`}>
                 <div
-                  key={idx}
                   className={styles.userMsg}
                   style={{ position: 'relative' }}
                 >
@@ -139,7 +138,6 @@ export default function ChatBot() {
                 </div>
                 {/* Notification with loader*/}
                 <div
-                  key={"notif-box"}
                   style={{
                     background: '#f5f6fa',
                     color: '#222',
@@ -168,7 +166,7 @@ export default function ChatBot() {
                   </span>
                   <span style={{ textAlign: 'left' }}>{notification}</span>
                 </div>
-              </>
+              </React.Fragment>
             );
           }
           // Normal message rendering

@@ -10,14 +10,6 @@ interface Message {
   query_result?: string;
 }
 
-const trendyBotReplies = [
-  "Hey there! 👋 How can I help you today?",
-  "That's awesome! Tell me more.",
-  "Let me check that for you...",
-  "Here's what I found!",
-  "Thanks for chatting with me! 💬"
-];
-
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     { text: "Hi! I'm DigiBook Bot. Ask me anything!", sender: 'bot' }
@@ -78,7 +70,6 @@ export default function ChatBot() {
                 finalReceived = true;
                 notificationActive = false;
               }
-              // Optionally handle other types if needed
             } catch (e) {
               // ignore parse errors
             }
@@ -92,10 +83,8 @@ export default function ChatBot() {
     }
   };
 
-  // Tooltip state for each bot message - now shown as dialogs
   const [tooltip, setTooltip] = useState<{ type: 'sql' | 'suggested'; idx: number } | null>(null);
   
-  // Add event listener to close tooltip on ESC key
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && tooltip) {
@@ -105,7 +94,6 @@ export default function ChatBot() {
     
     window.addEventListener('keydown', handleEscKey);
     
-    // If tooltip is open, prevent body scrolling
     if (tooltip) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -141,7 +129,7 @@ export default function ChatBot() {
                     return <span key={i}>{part}</span>;
                   })}
                 </div>
-                {/* Notification box with loader - blue loader and left-aligned text */}
+                {/* Notification with loader*/}
                 <div
                   key={"notif-box"}
                   style={{
@@ -388,7 +376,10 @@ export default function ChatBot() {
           className={styles.input}
         />
         <button onClick={sendMessage} className={styles.sendBtn}>
-          ➤
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 2L11 13" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
       </div>
     </div>
